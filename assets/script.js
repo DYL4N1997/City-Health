@@ -9,9 +9,6 @@ var getCoordiantes = function (placeName) {
         response.json().then(function (data) {
           displayPlaces(data);
         });
-      } else {
-        alert('Error: ' + response.statusText);
       }
     })
 };
-
