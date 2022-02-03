@@ -35,6 +35,7 @@ var formSubmitHandler = function (event) {
   userForm.addEventListener('submit', formSubmitHandler);
   }
 
+  /* needs naming changed
   for (var i = 0; i < possPlaces.length; i++) {
     var placeName = possPlaces[i].name + '  ' + possPlaces[i].country;
     var placeEl = document.createElement('li');
@@ -48,6 +49,7 @@ var formSubmitHandler = function (event) {
     placeEl.appendChild(titleEl);
     specifyContainerEl.appendChild(placeEl);
   }
+  */
 
  
 
