@@ -11,23 +11,37 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <title>City Health</title>
   </head>
-  <body>
+  <body class="bg-neutral-100">
     <header>
-<<<<<<< HEAD
-        <h1 class="text-center bg-white-800 text-green-100 font-semibold text-4xl p-6">City Health</h1>
-        <h2 class="p-3 text-2xl font-semibold text-center bg-green-200 text-green-900">Current COVID-19 and Air Quality Statistics</h2>
-=======
         <h1 class="text-center bg-green-800 text-green-100 font-semibold text-4xl p-6">City Health</h1>
-        <h2 class="p-3 text-2xl font-semibold text-center bg-blue-200 text-green-900">Current COVID-19 and Air Quality Statistics</h2>
->>>>>>> 1abe08bee87c849137abf9dda8775c9d21d0dde6
+        <h2 class="p-3 text-2xl font-semibold text-center bg-green-200 text-green-900">Current COVID-19 and Air Quality Statistics</h2>
     </header>
-    <section>
-        <form></form>
-        <section></section>
+    <section class="grid grid-cols-3">
+    <section class="col-span-1">
+        <form class="m-4 rounded-xl border-4 border-green-800 text-green-900 p-6 bg-green-100 shadow-lg hover:bg-green-200">
+            <header class="font-semibold p-6 text-xl text-center">Search for a City:</header>
+            <div class="mx-20">
+                <input class="ml-6 p-1 rounded-xl border-4 border-green-800 text-center"
+                placeholder="e.g. Birmingham">
+                <button class=" bg-green-700 text-white p-2 rounded-xl"type="submit">Search</button>
+              </div>
+        </form>
+        <section class="grid grid-rows-3 gap-2 mt-4">
+            <div class="text-xl mx-4 text-center rounded-xl text-green-100 p-6 bg-green-700 shadow-lg hover:bg-green-600 ">1</div>
+            <div class="text-xl mx-4 text-center rounded-xl text-green-100 p-6 bg-green-700 shadow-lg hover:bg-green-600">2</div>
+            <div class="text-xl mx-4 text-center rounded-xl text-green-100 p-6 bg-green-700 shadow-lg hover:bg-green-600">3</div>
+        </section>
         <section></section>
     </section>
-    <main>
-        <section></section>
-        <section></section>
+    <main class="col-span-2">
+        <section class="m-4 rounded-lg border-4 border-green-800 text-green-900 items-stretch  bg-white rounded-xl shadow-lg hover:bg-gray-100">
+            <header class="bg-green-200 hover:bg-green-300 text-center">COVID-19 Statistics</header>
+            <p class="bg-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi, culpa? Quos voluptates accusantium numquam. Dignissimos obcaecati non, aspernatur deserunt, earum, provident odio dolorum ad dolore sint eaque? Perspiciatis, deserunt nam!</p>
+        </section>
+        <section class="m-4 rounded-lg border-4 border-green-800 text-green-900 items-stretch  bg-white rounded-xl shadow-lg hover:bg-gray-100">
+            <header class="bg-green-200 text-center hover:bg-green-300">Air Quality Statistics</header>
+            <p class="bg-white">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis repudiandae dignissimos, iste esse quia unde accusamus, vel deleniti sequi officia alias facere eligendi itaque autem facilis dolores, praesentium recusandae nisi. </p>
+        </section>
     </main>
+    </section>
   </body>
