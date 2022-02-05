@@ -2,6 +2,7 @@ var OP_KEY = "6ab359c87b61df5cbd8a7d7e8a717bc5";
 var displayContainer = document.querySelector('#display_container');
 var userForm = document.querySelector('#user-form')
 var input = document.querySelector('#input')
+var airQualityEl = document.querySelector('#air-pollution')
 
 var formSubmitHandler = function (event) {
   event.preventDefault ();
@@ -47,8 +48,42 @@ var displayPlaces = function (possibleOptions){
     }
 
 
+var getCityAirQuality = function (lon, lat) {
+    var apiUrl = 'https://api.openweathermap.org/data/2.5/air_pollution?lat=' + lon + '&lon=' + lat + '&' + OP_KEY;
+    fetch(apiUrl)
+    .then(function (res) {
+      if (res.ok) {
+        res.json().then(function (data) {
+          displayAirQuality(lon, lat, data);
+      });
+    }
+  })
+  lonlat.push(lon, lat);
+  saveSearch();
+  prevSearch(lon, lat);
+};
+
+function displayAirQuality(data) {
+  if (data.list.length === 0) {
+    airQualityEl.textContent = 'No pollution stats found.';
+    return;
+  }
+}
+
+airQualityEl.textContent = data.lon.lat;
+for (let i = 0; i < 1; i++) {
+  var lon = data.coord[i].lon;
+  var lat = data.coord[i].lat;
+  var date = data.list[i].dt;
+  var aqi = data.list[i].main.aqi;
+  var carbonM = data.components[i].co;
+  var nitrogenM = data.components[i].no;
+  var nitrogenD = data.components[i].no2;
+  var ozone = data.components[i].o3;
+  var sulphurD = data.components[i].so2;
+  var concPM = data.components[i].pm2_5;
+  var Conc = data.components[i].pm10;
+  var ammonia = data.components[i].nh3;
+
+
   userForm.addEventListener('submit', formSubmitHandler);
-
-
-
-  
