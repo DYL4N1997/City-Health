@@ -46,16 +46,3 @@ var formSubmitHandler = function (event) {
     displayContainer.appendChild(place);
   }
   
-
- 
-
-
-
-
-
-
-
-
-
-
-
