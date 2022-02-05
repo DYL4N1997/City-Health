@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var AP_KEY = "fa9ea468bf86f98d5f74d1ee663cf459";
 var displayContainer = document.querySelector('#display_container');
 var userForm = document.querySelector('#user-form')
@@ -52,7 +51,7 @@ var formSubmitHandler = function (event) {
   }
   */
 
- 
+ cfsuicsaghcs9c0
 
 
 
@@ -64,5 +63,3 @@ var formSubmitHandler = function (event) {
 
 
 
-=======
->>>>>>> 79f334110ad2f6f551ac5387dfd288e6c4b4e3b7
