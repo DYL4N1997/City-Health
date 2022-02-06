@@ -1,8 +1,14 @@
 var OP_KEY = "6ab359c87b61df5cbd8a7d7e8a717bc5";
 var displayContainer = document.querySelector('#display_container');
-var userForm = document.querySelector('#user-form')
-var input = document.querySelector('#input')
-var airQualityEl = document.querySelector('#air-pollution')
+var userForm = document.querySelector('#user-form');
+var input = document.querySelector('#input');
+var airQualityEl = document.querySelector('#air-pollution');
+// locBtn is an object that will hold my selected place and its latitude and longitude.
+// an is a variable that contains many values
+var locBtn = new Object()
+var pcApi="";
+var dataReg="";
+
 
 var formSubmitHandler = function (event) {
   event.preventDefault ();
@@ -32,11 +38,14 @@ var displayPlaces = function (possibleOptions){
       displayContainer.textContent = 'No place matches your search';
         return;
       }
-    
+      var placeGroup=document.querySelector("#place_group")
+      placeGroup.textContent="Please select the desired place:";
+      placeGroup.classList = 'font-semibold p-3 text-xl text-center text-green-900 '
      for (var i = 0; i < possibleOptions.length; i++) {
         var placeName = possibleOptions[i].name + '  ' + possibleOptions[i].country;
-        var place = document.createElement('li');
+        var place = document.createElement('ul');
         // Computer creates the choices as buttons so that the user can select one.
+        place.classList = 'text-xl mx-4 text-center rounded-xl text-green-100 p-6 bg-green-700 shadow-lg hover:bg-green-600'
         var title = document.createElement('button');
         title.textContent = placeName;
         title.name='choice';
@@ -45,8 +54,45 @@ var displayPlaces = function (possibleOptions){
         place.appendChild(title);
         displayContainer.appendChild(place);
       }
-    }
+    
 
+    // when the user clicks on the place they want to select it extracts the related id and puts the place plus its lat and long in locBtn
+    $("button[name='choice']").on('click',function() {
+      // parse int changes string to an integer
+      // in this case the integer (in this case it can be 0,1,2 depending on which button the user clicks)
+      // we change it to an integer so that the computer knows which place you chose and thus which information to come up with.
+      var j=parseInt($(this).val());
+      console.log(j+ "j")
+      //storing properties of selected location so that you can now access name, lat and long 
+      locBtn.place=possibleOptions[j].name; 
+      locBtn.lat=possibleOptions[j].lat; 
+      locBtn.lon=possibleOptions[j].lon;
+      // this API find the local authority (it associates the lat and lon with local gov region needed for covid nhs api)
+      pcApi =   'https://findthatpostcode.uk/points/'+locBtn.lat+'%2C'+locBtn.lon+'.json'
+      
+  getRegion(pcApi)}
+      );
+      //make sure inside the bracket that opens at the possible options function
+  };
+  
+  var getRegion = function (pcApi) {
+      fetch(pcApi)
+        .then(function (response) {
+          if (response.ok) {
+            response.json().then(function (data) {
+                dataReg=data;
+                //to match the covid database we need to find the geographical code that corresponds to 'laua' 
+                //https://findthatpostcode.uk/areatypes/laua.html local authority. 
+                //Depending on the type of geography this is in either the second or third line. 
+                // the else is for more rural places
+                if(dataReg.included[3].relationships.areatype.data.id=="laua"){
+                  placeCode=dataReg.included[3].id}
+                  else{placeCode=dataReg.included[2].id}
+    
+            });
+          } 
+        });
+    };
 
 var getCityAirQuality = function (lon, lat) {
     var apiUrl = 'https://api.openweathermap.org/data/2.5/air_pollution?lat=' + lon + '&lon=' + lat + '&' + OP_KEY;
@@ -70,20 +116,24 @@ function displayAirQuality(data) {
   }
 }
 
-airQualityEl.textContent = data.lon.lat;
-for (let i = 0; i < 1; i++) {
-  var lon = data.coord[i].lon;
-  var lat = data.coord[i].lat;
-  var date = data.list[i].dt;
-  var aqi = data.list[i].main.aqi;
-  var carbonM = data.components[i].co;
-  var nitrogenM = data.components[i].no;
-  var nitrogenD = data.components[i].no2;
-  var ozone = data.components[i].o3;
-  var sulphurD = data.components[i].so2;
-  var concPM = data.components[i].pm2_5;
-  var Conc = data.components[i].pm10;
-  var ammonia = data.components[i].nh3;
 
 
-  userForm.addEventListener('submit', formSubmitHandler);
+userForm.addEventListener('submit', formSubmitHandler);
+
+// airQualityEl.textContent = data.lon.lat;
+// for (let i = 0; i < 1; i++) {
+//   var lon = data.coord[i].lon;
+//   var lat = data.coord[i].lat;
+//   var date = data.list[i].dt;
+//   var aqi = data.list[i].main.aqi;
+//   var carbonM = data.components[i].co;
+//   var nitrogenM = data.components[i].no;
+//   var nitrogenD = data.components[i].no2;
+//   var ozone = data.components[i].o3;
+//   var sulphurD = data.components[i].so2;
+//   var concPM = data.components[i].pm2_5;
+//   var Conc = data.components[i].pm10;
+//   var ammonia = data.components[i].nh3;}
+
+
+
