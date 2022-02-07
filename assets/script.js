@@ -8,6 +8,13 @@ var airQualityEl = document.querySelector('#air-pollution');
 var locBtn = new Object()
 var pcApi="";
 var dataReg="";
+var covidApi= "";
+var dataCov="";
+
+//this moment is needed for covid API in this layout
+now = moment().format('YYYY-MM-DD');
+console.log(now)
+
 
 
 var formSubmitHandler = function (event) {
@@ -67,6 +74,8 @@ var displayPlaces = function (possibleOptions){
       locBtn.place=possibleOptions[j].name; 
       locBtn.lat=possibleOptions[j].lat; 
       locBtn.lon=possibleOptions[j].lon;
+      document.querySelector("#Area").innerHTML = locBtn.place
+      
       // this API find the local authority (it associates the lat and lon with local gov region needed for covid nhs api)
       pcApi =   'https://findthatpostcode.uk/points/'+locBtn.lat+'%2C'+locBtn.lon+'.json'
       
@@ -86,12 +95,47 @@ var displayPlaces = function (possibleOptions){
                 //Depending on the type of geography this is in either the second or third line. 
                 // the else is for more rural places
                 if(dataReg.included[3].relationships.areatype.data.id=="laua"){
-                  placeCode=dataReg.included[3].id}
-                  else{placeCode=dataReg.included[2].id}
-    
+                  placeCode=dataReg.included[3].id;regionCode=dataReg.included[6].id}
+                  else{placeCode=dataReg.included[2].id;regionCode=dataReg.included[5].id};
+                //
+                  covidApi='https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=utla;areaCode='+placeCode+';date='+now+'&structure={"name":"areaName","areaCode":"areaCode","date":"date","dailyCases": "newCasesByPublishDate"}&latestBy:"newCasesByPublishDate"';
+                  covidApiHosp='https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nhsRegion;areaCode='+regionCode+';date='+now+'&structure={"name":"areaName","areaCode":"areaCode","date":"date","hospitalCases":"hospitalCases","transmissionRateMax":"transmissionRateMax"}&latestBy:"newCasesByPublishDate"';
+                 getCovidCases(covidApi);
+                 getCovidHospital(covidApiHosp);
             });
           } 
         });
+    };
+  
+
+var getCovidCases = function (covidApi) {
+      fetch(covidApi)
+        .then(function (response) {
+          if (response.ok) {
+            response.json().then(function (data) {
+              // today's data from the Gov about COVID stats for the selected place
+              dataCov=data;
+              console.log("area "+ dataCov.data[0].name + " daily cases "+ dataCov.data[0].dailyCases)
+              document.querySelector("#covid-cases").innerHTML= " Daily Cases: "+ dataCov.data[0].dailyCases;
+            });
+        } 
+      });
+    };
+  
+var getCovidHospital = function (covidApiHosp) {
+      fetch(covidApiHosp)
+        .then(function (response) {
+          if (response.ok) {
+            response.json().then(function (data) {
+              // today's data from the Gov about COVID stats for the selected place
+              dataCovHosp=data;
+              console.log(dataCovHosp);
+              console.log("area "+ dataCov.data[0].name + " daily cases "+ dataCovHosp.data[0].dailyCases)
+              document.querySelector("#hospital-occupancy").innerHTML= " Hospital Occupancies: "+ dataCovHosp.data[0].hospitalCases
+              document.querySelector("#r-rate").innerHTML="R rate:"
+            });
+        } 
+      });
     };
 
 var getCityAirQuality = function (lon, lat) {
@@ -115,8 +159,6 @@ function displayAirQuality(data) {
     return;
   }
 }
-
-
 
 userForm.addEventListener('submit', formSubmitHandler);
 

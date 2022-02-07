@@ -32,9 +32,14 @@
         <section></section>
     </section>
     <main class="col-span-2">
+      <header class="text-2xl font-semibold text-center text-green-900 p-6" id="Area"></header>
         <section class="m-4 rounded-lg border-4 border-green-800 text-green-900 items-stretch  bg-white rounded-xl shadow-lg hover:bg-gray-100">
             <header class="bg-green-200 hover:bg-green-300 text-center">COVID-19 Statistics</header>
-            <p class="bg-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi, culpa? Quos voluptates accusantium numquam. Dignissimos obcaecati non, aspernatur deserunt, earum, provident odio dolorum ad dolore sint eaque? Perspiciatis, deserunt nam!</p>
+            <section id="covid" class="bg-white grid-cols-3">
+              <div id="covid-cases" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="hospital-occupancy" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div></div>
+            </section>
         </section>
         <section class="m-4 rounded-lg border-4 border-green-800 text-green-900 items-stretch  bg-white rounded-xl shadow-lg hover:bg-gray-100">
             <header class="bg-green-200 text-center hover:bg-green-300">Air Quality Statistics</header>
@@ -42,11 +47,14 @@
         </section>
     </main>
     </section>
-    <script src="./assets/script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    
+     
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
   integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script> 
+
    <!--added jquery library-->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="./assets/script.js"></script>
   </body>
 </html>
