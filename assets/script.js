@@ -29,7 +29,7 @@ var formSubmitHandler = function (event) {
   };
 
 var getCoordinates = function (placeName) {
-    var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+placeName+',*&limit=3&appid='+OP_KEY;
+    var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+placeName+',*,GB&limit=3&appid='+OP_KEY;
     fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
@@ -42,7 +42,7 @@ var getCoordinates = function (placeName) {
 
 var displayPlaces = function (possibleOptions){
     if (possibleOptions.length===0){
-      displayContainer.textContent = 'No place matches your search';
+      displayContainer.textContent = 'Please Choose a Place in Great Britain';
         return;
       }
       var placeGroup=document.querySelector("#place_group")
