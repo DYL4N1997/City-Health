@@ -13,40 +13,58 @@
   </head>
   <body class="bg-neutral-100">
     <header>
-        <h1 class="text-center bg-green-800 text-green-100 font-semibold text-4xl p-6">City Health</h1>
+        <h1 class="text-center bg-green-800 text-green-100 font-semibold text-4xl p-6">City Health in Great Britain</h1>
         <h2 class="p-3 text-2xl font-semibold text-center bg-green-200 text-green-900">Current COVID-19 and Air Quality Statistics</h2>
     </header>
     <section class="grid grid-cols-3">
     <section class="col-span-1">
         <form id="user-form" class="m-4 rounded-xl border-4 border-green-800 text-green-900 p-6 bg-green-100 shadow-lg hover:bg-green-200">
-            <header class="font-semibold p-6 text-xl text-center">Search for a City:</header>
+            <header class="font-semibold p-6 text-xl text-center">Search for a Place:</header>
             <div class="mx-20">
                 <input id="input"class="ml-6 p-1 rounded-xl border-4 border-green-800 text-center"
                 placeholder="e.g. Birmingham">
                 <button class=" bg-green-700 text-white p-2 rounded-xl" type="submit" id="search-btn">Search</button>
               </div>
         </form>
-        <section id="display_container" class="grid grid-rows-3 gap-2 mt-4">
-            <div class="text-xl mx-4 text-center rounded-xl text-green-100 p-6 bg-green-700 shadow-lg hover:bg-green-600 ">1</div>
-            <div class="text-xl mx-4 text-center rounded-xl text-green-100 p-6 bg-green-700 shadow-lg hover:bg-green-600">2</div>
-            <div class="text-xl mx-4 text-center rounded-xl text-green-100 p-6 bg-green-700 shadow-lg hover:bg-green-600">3</div>
+        <h2 id="place_group"></h2>
+        <section id="display_container" class="grid grid-rows-4 gap-2 mt-4">
         </section>
         <section></section>
     </section>
     <main class="col-span-2">
+      <header class="text-2xl font-semibold text-center text-green-900 p-6" id="Area"></header>
         <section class="m-4 rounded-lg border-4 border-green-800 text-green-900 items-stretch  bg-white rounded-xl shadow-lg hover:bg-gray-100">
             <header class="bg-green-200 hover:bg-green-300 text-center">COVID-19 Statistics</header>
-            <p class="bg-white">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi, culpa? Quos voluptates accusantium numquam. Dignissimos obcaecati non, aspernatur deserunt, earum, provident odio dolorum ad dolore sint eaque? Perspiciatis, deserunt nam!</p>
+            <section id="covid" class="bg-white grid-cols-3">
+              <div id="covid-cases" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="hospital-occupancy" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div></div>
+            </section>
         </section>
         <section class="m-4 rounded-lg border-4 border-green-800 text-green-900 items-stretch  bg-white rounded-xl shadow-lg hover:bg-gray-100">
             <header class="bg-green-200 text-center hover:bg-green-300">Air Quality Statistics</header>
-            <p id= "air-pollution" class="bg-white">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Omnis repudiandae dignissimos, iste esse quia unde accusamus, vel deleniti sequi officia alias facere eligendi itaque autem facilis dolores, praesentium recusandae nisi. </p>
+            <section id="air-pollution" class="bg-white grid-cols-3">
+              <div id="aqi" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="carbonM" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="nitrogenM" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="nitrogenD" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="ozone" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="sulphurD" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="concPM" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="conc" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="ammonia" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div></div>
         </section>
     </main>
     </section>
-    <script src="./assets/script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+    
+     
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
   integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script> 
+
+   <!--added jquery library-->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="./assets/script.js"></script>
   </body>
 </html>
