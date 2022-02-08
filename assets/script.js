@@ -15,8 +15,6 @@ var dataCov="";
 now = moment().format('YYYY-MM-DD');
 
 
-
-
 var formSubmitHandler = function (event) {
   event.preventDefault ();
   var placeName = input.value.trim();
@@ -29,7 +27,7 @@ var formSubmitHandler = function (event) {
   };
 
 var getCoordinates = function (placeName) {
-    var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+placeName+',*&limit=3&appid='+OP_KEY;
+    var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+placeName+',*,GB&limit=3&appid='+OP_KEY;
     fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
@@ -42,7 +40,7 @@ var getCoordinates = function (placeName) {
 
 var displayPlaces = function (possibleOptions){
     if (possibleOptions.length===0){
-      displayContainer.textContent = 'No place matches your search';
+      displayContainer.textContent = 'Please Choose a Place in Great Britain';
         return;
       }
       var placeGroup=document.querySelector("#place_group")
@@ -78,6 +76,7 @@ var displayPlaces = function (possibleOptions){
       document.querySelector("#Area").innerHTML = locBtn.place
       
       // this API find the local authority (it associates the lat and lon with local gov region needed for covid nhs api)
+
       pcApi =   'https://findthatpostcode.uk/points/'+locBtn.lat+'%2C'+locBtn.lon+'.json'
       
   getRegion(pcApi)}
@@ -101,8 +100,13 @@ var displayPlaces = function (possibleOptions){
                 //
                   covidApi='https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=utla;areaCode='+placeCode+';date='+now+'&structure={"name":"areaName","areaCode":"areaCode","date":"date","dailyCases": "newCasesByPublishDate"}&latestBy:"newCasesByPublishDate"';
                   covidApiHosp='https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nhsRegion;areaCode='+regionCode+';date='+now+'&structure={"name":"areaName","areaCode":"areaCode","date":"date","hospitalCases":"hospitalCases","transmissionRateMax":"transmissionRateMax"}&latestBy:"newCasesByPublishDate"';
+
+
+                  covidApiR='https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nhsRegion;areaCode='+regionCode+';date='+prevFri+'&structure={"name":"areaName","areaCode":"areaCode","date":"date","hospitalCases":"hospitalCases","transmissionRateMax":"transmissionRateMax"}&latestBy:"newCasesByPublishDate"';
                  getCovidCases(covidApi);
                  getCovidHospital(covidApiHosp);
+                 
+
             });
           } 
         });
@@ -131,9 +135,24 @@ var getCovidHospital = function (covidApiHosp) {
               // today's data from the Gov about COVID stats for the selected place
               dataCovHosp=data;
               console.log(dataCovHosp);
+      
+              document.querySelector("#hospital-occupancy").innerHTML= " Hospital Occupancies: "+ dataCovHosp.data[0].hospitalCases;
+            });
+        } 
+      });
+    };
+
+var getCovidR = function (covidApiR) {
+      fetch(covidApiR)
+        .then(function (response) {
+          if (response.ok) {
+            response.json().then(function (data) {
+              // today's data from the Gov about COVID stats for the selected place
+              dataCovR=data;
+              console.log(dataCovR);
               console.log("area "+ dataCov.data[0].name + " daily cases "+ dataCovHosp.data[0].dailyCases)
-              document.querySelector("#hospital-occupancy").innerHTML= " Hospital Occupancies: "+ dataCovHosp.data[0].hospitalCases
-              document.querySelector("#r-rate").innerHTML="R rate:"
+              document.querySelector("#r-rate").innerHTML="R rate: "+ dataCovR.data[0].transmissionRateMax;
+
             });
         } 
       });
@@ -159,30 +178,22 @@ function displayAirQuality(data) {
     airQualityEl.textContent = 'No pollution stats found.';
     return;
   }
-}
+  
+// https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 
 
+// for (let i = 0; i < 1; i++) {
+//   var lon = data.coord[i].lon;
+//   var lat = data.coord[i].lat;
+//   var date = data.list[i].dt;
+//   var aqi = data.list[i].main.aqi;
+//   var carbonM = data.components[i].co;
+//   var nitrogenM = data.components[i].no;
+//   var nitrogenD = data.components[i].no2;
+//   var ozone = data.components[i].o3;
+//   var sulphurD = data.components[i].so2;
+//   var concPM = data.components[i].pm2_5;
+//   var Conc = data.components[i].pm10;
+//   var ammonia = data.components[i].nh3;}
 
-userForm.addEventListener('submit', formSubmitHandler);
-
-
-
-
-// locate <main> element
-const main = document.querySelector('main');
-
-// store values
-main.dataset.value1 = 1;
-main.dataset.state = JSON.stringify({ a:1, b:2 });
-
-// retreive values
-console.log( main.dataset.value1 ); // "1"
-console.log( JSON.parse(main.dataset.state).a ); // 1
-
-localStorage.setItem('value1', '');
-localStorage.setItem('value2', '');
-localStorage.setItem('state', JSON.stringify,'');
-
-
-const state = JSON.parse( localStorage.getItem('state') );
 
