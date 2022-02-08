@@ -13,9 +13,7 @@ var dataCov="";
 
 //this moment is needed for covid API in this layout
 now = moment().format('YYYY-MM-DD');
-
-
-
+var prevFri=moment().day(-2).format('YYYY-MM-DD');
 
 var formSubmitHandler = function (event) {
   event.preventDefault ();
@@ -29,7 +27,7 @@ var formSubmitHandler = function (event) {
   };
 
 var getCoordinates = function (placeName) {
-    var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+placeName+',*&limit=3&appid='+OP_KEY;
+    var apiUrl = 'https://api.openweathermap.org/geo/1.0/direct?q='+placeName+',*,GB&limit=3&appid='+OP_KEY;
     fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
@@ -42,7 +40,7 @@ var getCoordinates = function (placeName) {
 
 var displayPlaces = function (possibleOptions){
     if (possibleOptions.length===0){
-      displayContainer.textContent = 'No place matches your search';
+      displayContainer.textContent = 'Please Choose a Place in Great Britain';
         return;
       }
       var placeGroup=document.querySelector("#place_group")
@@ -60,7 +58,6 @@ var displayPlaces = function (possibleOptions){
         title.value=i;
         place.appendChild(title);
         displayContainer.appendChild(place);
-        
       }
     
 
@@ -101,8 +98,10 @@ var displayPlaces = function (possibleOptions){
                 //
                   covidApi='https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=utla;areaCode='+placeCode+';date='+now+'&structure={"name":"areaName","areaCode":"areaCode","date":"date","dailyCases": "newCasesByPublishDate"}&latestBy:"newCasesByPublishDate"';
                   covidApiHosp='https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nhsRegion;areaCode='+regionCode+';date='+now+'&structure={"name":"areaName","areaCode":"areaCode","date":"date","hospitalCases":"hospitalCases","transmissionRateMax":"transmissionRateMax"}&latestBy:"newCasesByPublishDate"';
+                  covidApiR='https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=nhsRegion;areaCode='+regionCode+';date='+prevFri+'&structure={"name":"areaName","areaCode":"areaCode","date":"date","hospitalCases":"hospitalCases","transmissionRateMax":"transmissionRateMax"}&latestBy:"newCasesByPublishDate"';
                  getCovidCases(covidApi);
                  getCovidHospital(covidApiHosp);
+                 getCovidR(covidApiR);
             });
           } 
         });
@@ -132,8 +131,22 @@ var getCovidHospital = function (covidApiHosp) {
               dataCovHosp=data;
               console.log(dataCovHosp);
               console.log("area "+ dataCov.data[0].name + " daily cases "+ dataCovHosp.data[0].dailyCases)
-              document.querySelector("#hospital-occupancy").innerHTML= " Hospital Occupancies: "+ dataCovHosp.data[0].hospitalCases
-              document.querySelector("#r-rate").innerHTML="R rate:"
+              document.querySelector("#hospital-occupancy").innerHTML= " Hospital Occupancies: "+ dataCovHosp.data[0].hospitalCases;
+            });
+        } 
+      });
+    };
+
+var getCovidR = function (covidApiR) {
+      fetch(covidApiR)
+        .then(function (response) {
+          if (response.ok) {
+            response.json().then(function (data) {
+              // today's data from the Gov about COVID stats for the selected place
+              dataCovR=data;
+              console.log(dataCovR);
+              console.log("area "+ dataCov.data[0].name + " daily cases "+ dataCovHosp.data[0].dailyCases)
+              document.querySelector("#r-rate").innerHTML="R rate: "+ dataCovR.data[0].transmissionRateMax;
             });
         } 
       });
@@ -161,28 +174,26 @@ function displayAirQuality(data) {
   }
 }
 
+https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 
 
 userForm.addEventListener('submit', formSubmitHandler);
 
+/* set it */
+$('#search-btn').click(function() {
+  var test = $('#covid').val();
+  localStorage.setItem("dailyCases",dataCov);
+  localStorage.setItem("Hospital Occupancies",getCovidHospital);
+});
 
+/* get it */
+$('#covid').click(function() {
+  $('#covid').text(localStorage.getItem("getCovidCases"));
+});
 
+/* remove it */
+$('#main').click(function() {
+  localStorage.removeItem("covid");
+});
 
-// locate <main> element
-const main = document.querySelector('main');
-
-// store values
-main.dataset.value1 = 1;
-main.dataset.state = JSON.stringify({ a:1, b:2 });
-
-// retreive values
-console.log( main.dataset.value1 ); // "1"
-console.log( JSON.parse(main.dataset.state).a ); // 1
-
-localStorage.setItem('value1', '');
-localStorage.setItem('value2', '');
-localStorage.setItem('state', JSON.stringify,'');
-
-
-const state = JSON.parse( localStorage.getItem('state') );
-
+$('#main').text(localStorage.getItem("covid"));
