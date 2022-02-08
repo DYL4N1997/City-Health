@@ -60,7 +60,6 @@ var displayPlaces = function (possibleOptions){
         displayContainer.appendChild(place);
       }
     
-<<<<<<< HEAD
 
     // when the user clicks on the place they want to select it extracts the related id and puts the place plus its lat and long in locBtn
     $("button[name='choice']").on('click',function() {
@@ -152,7 +151,6 @@ var getCovidR = function (covidApiR) {
         } 
       });
     };
-=======
 
     // when the user clicks on the place they want to select it extracts the related id and puts the place plus its lat and long in locBtn
     $("button[name='choice']").on('click',function() {
@@ -203,7 +201,6 @@ var getCovidR = function (covidApiR) {
         });
     };
   
->>>>>>> a4610a72390ac50a6b0ed74c6d0b00faf917738e
 
 var getCovidCases = function (covidApi) {
       fetch(covidApi)
@@ -270,8 +267,7 @@ function getCityAirQuality (locBtn) {
 //removed lon lat saving because doesn't work using locBtn
 };
 
-<<<<<<< HEAD
-https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+// https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 
 
 userForm.addEventListener('submit', formSubmitHandler);
@@ -294,7 +290,6 @@ $('#main').click(function() {
 });
 
 $('#main').text(localStorage.getItem("covid"));
-=======
 function displayAirQuality(dataAQ) {
 if (dataAQ.list[0].components.length === 0) {
    airQualityEl.textContent = 'No pollution stats found.';
@@ -316,4 +311,3 @@ document.querySelector("#NH3").innerHTML="Ammonia: "+dataAQ.list[0].components.n
 }
 
 userForm.addEventListener('submit', formSubmitHandler);
->>>>>>> a4610a72390ac50a6b0ed74c6d0b00faf917738e
