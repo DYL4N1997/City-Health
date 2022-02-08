@@ -75,7 +75,8 @@ var displayPlaces = function (possibleOptions){
       document.querySelector("#Area").innerHTML = locBtn.place
       
       // this API find the local authority (it associates the lat and lon with local gov region needed for covid nhs api)
-      pcApi =   'https://findthatpostcode.uk/points/'+locBtn.lat+'%2C'+locBtn.lon+'.json'
+      
+      pcApi =   'https://findthatpostcode.uk/points/'+locBtn.lat+'%2C'+locBtn.lon+'.json'
       
   getRegion(pcApi)}
       );
@@ -172,10 +173,8 @@ function displayAirQuality(data) {
     airQualityEl.textContent = 'No pollution stats found.';
     return;
   }
-}
-
-https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
-
+  
+// https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
 
 userForm.addEventListener('submit', formSubmitHandler);
 
@@ -193,6 +192,4 @@ userForm.addEventListener('submit', formSubmitHandler);
 //   var concPM = data.components[i].pm2_5;
 //   var Conc = data.components[i].pm10;
 //   var ammonia = data.components[i].nh3;}
-
-
 

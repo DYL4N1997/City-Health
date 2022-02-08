@@ -20,8 +20,10 @@
     <section class="col-span-4">
         <form id="user-form" class="m-4 rounded-xl border-4 border-green-800 text-green-900 p-6 bg-green-100 shadow-lg hover:bg-green-200">
             <header class="font-semibold p-6 text-xl text-center">Search for a Place:</header>
+          
             <div class="grid grid-cols-2 ">
                 <input id="input"class="m-4 col-span-1 p-1 rounded-xl border-2 border-green-800 text-center"
+
                 placeholder="e.g. Birmingham">
                 <button class="m-4 col-span-1 bg-green-700 text-white p-2 rounded-xl" type="submit" id="search-btn">Search</button>
               </div>
@@ -31,6 +33,7 @@
         </section>
         <section></section>
     </section>
+    
     <main class="col-span-6">
       <header class="text-3xl font-semibold text-center text-green-900 p-6" id="Area"></header>
         <section class="m-4 rounded-lg border-4 border-green-800 text-green-900 items-stretch  bg-white rounded-xl shadow-lg hover:bg-gray-100">
@@ -44,18 +47,21 @@
         <section class="m-4 rounded-lg border-4 border-green-800 text-green-900 items-stretch  bg-white rounded-xl shadow-lg hover:bg-gray-100">
             <header class="bg-green-200 font-semibold text-xl text-center hover:bg-green-300">Air Quality Statistics</header>
             <section id= "air-pollution grid-cols-3 " class="bg-white">
-              <div class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
-              <div class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
-              <div class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
-              <div class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
-              <div class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
-              <div class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="aqi" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="carbonM" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="nitrogenM" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="nitrogenD" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="ozone" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="sulphurD" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="concPM" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="conc" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+              <div id="ammonia" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
             </section>
+
         </section>
     </main>
     </section>
     
-     
    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
   integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
   crossorigin="anonymous"></script> 
