@@ -73,10 +73,12 @@ var displayPlaces = function (possibleOptions){
       locBtn.lat=possibleOptions[j].lat; 
       locBtn.lon=possibleOptions[j].lon;
       document.querySelector("#Area").innerHTML = locBtn.place
+      console.log('hello')
+      getCityAirQuality(locBtn);
       
       // this API find the local authority (it associates the lat and lon with local gov region needed for covid nhs api)
       
-      pcApi =   'https://findthatpostcode.uk/points/'+locBtn.lat+'%2C'+locBtn.lon+'.json'
+      pcApi = 'https://findthatpostcode.uk/points/'+locBtn.lat+'%2C'+locBtn.lon+'.json'
       
   getRegion(pcApi)}
       );
@@ -153,43 +155,45 @@ var getCovidR = function (covidApiR) {
       });
     };
 
-var getCityAirQuality = function (lon, lat) {
-    var apiUrl = 'https://api.openweathermap.org/data/2.5/air_pollution?lat=' + lon + '&lon=' + lat + '&' + OP_KEY;
-    fetch(apiUrl)
-    .then(function (res) {
-      if (res.ok) {
-        res.json().then(function (data) {
-          displayAirQuality(lon, lat, data);
-      });
-    }
-  })
-  lonlat.push(lon, lat);
-  saveSearch();
-  prevSearch(lon, lat);
+// locBtn holds the lat and lon so when you put it as the argument then when you call for the lat and lon it spits it back
+function getCityAirQuality (locBtn) {
+  //lon and lat the other way round (look at the = sign infront to know which one is which)
+  //put locBtn.lat/locBtn.lon in the correct spaces
+  //changed apiUrl to be more specific
+  var apiAQUrl = 'https://api.openweathermap.org/data/2.5/air_pollution?lat='+locBtn.lat+'&lon='+locBtn.lon+'&appid='+OP_KEY;
+  console.log(apiAQUrl)
+  fetch(apiAQUrl)
+  .then(function (res) {
+    if (res.ok) {
+      res.json().then(function (data) {
+        dataAQ=data
+        console.log(dataAQ)
+        //throwing air quality data into display function
+      displayAirQuality(dataAQ)
+    });
+  }
+})
+//removed lon lat saving because doesn't work using locBtn
 };
 
-function displayAirQuality(data) {
-  if (data.list.length === 0) {
-    airQualityEl.textContent = 'No pollution stats found.';
-    return;
-  }
-  
-// https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API key}
+function displayAirQuality(dataAQ) {
+if (dataAQ.list[0].components.length === 0) {
+   airQualityEl.textContent = 'No pollution stats found.';
+   return;
+}
+else{
+  var  dataGas=dataAQ.list[0].components
+
+//this is where the html goes
+document.querySelector("#Air-Quality").innerHTML="Air Quality Index: "+dataAQ.list[0].main.aqi
+document.querySelector("#Fine-Particles").innerHTML="Fine Particles : "+dataAQ.list[0].components.pm2_5+"μg/m<sup> 3</sup>"
+document.querySelector("#CO").innerHTML="carbon monoxide: "+dataAQ.list[0].components.co+"μg/m<sup> 3</sup>"
+document.querySelector("#ozone").innerHTML="Ozone: "+dataAQ.list[0].components.o3+"μg/m<sup> 3</sup>"
+document.querySelector("#NO").innerHTML="nitrogen monoxide: "+dataAQ.list[0].components.no+"μg/m<sup> 3</sup>"
+document.querySelector("#NO2").innerHTML="nitrogen dioxide: "+dataAQ.list[0].components.no2+"μg/m<sup> 3</sup>"
+document.querySelector("#SO2").innerHTML="sulfur dioxide: "+dataAQ.list[0].components.so2+"μg/m<sup> 3</sup>"
+document.querySelector("#NH3").innerHTML="Ammonia: "+dataAQ.list[0].components.nh3+"μg/m<sup> 3</sup>"
+}
+}
 
 userForm.addEventListener('submit', formSubmitHandler);
-
-// airQualityEl.textContent = data.lon.lat;
-// for (let i = 0; i < 1; i++) {
-//   var lon = data.coord[i].lon;
-//   var lat = data.coord[i].lat;
-//   var date = data.list[i].dt;
-//   var aqi = data.list[i].main.aqi;
-//   var carbonM = data.components[i].co;
-//   var nitrogenM = data.components[i].no;
-//   var nitrogenD = data.components[i].no2;
-//   var ozone = data.components[i].o3;
-//   var sulphurD = data.components[i].so2;
-//   var concPM = data.components[i].pm2_5;
-//   var Conc = data.components[i].pm10;
-//   var ammonia = data.components[i].nh3;}
-
