@@ -40,7 +40,7 @@ var formSubmitHandler = function (event) {
   else {
     document.querySelector("#display_container").innerHTML= "Please enter a place!";
     var pleaseEnterPlace = document.querySelector("#display_container")
-    pleaseEnterPlace.classList="rounded-lg m-4 lg  font-semibold p-3 text-2xl text-center text-green-900 "
+    pleaseEnterPlace.classList="rounded-lg m-2  font-semibold p-1 text-2xl text-center text-blue-900 md:m-3 md:p-2 md:text-3xl md:text-teal-900 lg:m-4 lg:p-3 lg:text-4xl lg:text-green-900"
 
   }
   };
@@ -66,18 +66,18 @@ var displayPlaces = function (possibleOptions){
       // If computer can not find any places to match the user's input within Great Britain then the message below is displayed on the webpage.
       var placeGroup=document.querySelector('#place_group')
       placeGroup.textContent = 'Please Choose a Place in Great Britain!';
-      placeGroup.classList = 'rounded-lg m-4 lg  font-semibold p-3 text-2xl text-center text-green-900 '
+      placeGroup.classList = 'rounded-lg m-2  font-semibold p-1 text-2xl text-center text-blue-900 md:m-3 md:p-2 md:text-3xl md:text-teal-900 lg:m-4 lg:p-3 lg:text-4xl lg:text-green-900 '
         return;
       }
       var placeGroup=document.querySelector("#place_group")
       placeGroup.textContent="Please select the desired place:";
-      placeGroup.classList = 'font-semibold p-3 text-xl text-center text-green-900 '
+      placeGroup.classList = 'text-center font-semibold text-xl  text-blue-800 md:text-2xl  md:text-teal-800 lg:text-3xl  lg:text-green-800'
       // Computer generates the list to be visible to the user on the webpage.
      for (var i = 0; i < possibleOptions.length; i++) {
         var placeName = possibleOptions[i].name + '  ' + possibleOptions[i].country;
         var place = document.createElement('ul');
         // Computer creates the choices as buttons so that the user can select one.
-        place.classList = 'font-semibold text-xl mx-4 text-center rounded-xl text-green-100 p-6 bg-green-700 shadow-lg hover:bg-green-600'
+        place.classList = 'font-semibold text-xl mx-2 text-center rounded-xl text-blue-100 p-4 bg-blue-700 shadow-lg hover:bg-blue-600 md:text-2xl md:mx-3 md:text-teal-100 md:p-5 md:bg-teal-700  md:hover:bg-teal-600 lg:text-3xl lg:mx-4 lg:text-green-100 lg:p-6 lg:bg-green-700  lg:hover:bg-green-600'
         var title = document.createElement('button');
         title.classList = "font-semibold "
         title.textContent = placeName;
@@ -162,7 +162,7 @@ var getCovidCases = function (covidApi) {
               // COVID-19 cases are shown inside the id of: covid-cases in the HTML
               document.querySelector("#covid-cases").innerHTML= " Daily Cases: "+ dataCov.data[0].dailyCases;
               var covidCases = document.querySelector("#covid-cases")
-              covidCases.classList="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
+              covidCases.classList="m-2 text-blue-900 shadow-lg text-center mx-4 my-1 bg-blue-100 rounded-xl p-2 font-semibold text-xl border-1 border-blue-200 md:m-3 md:text-teal-900 md:mx-5 md:my-2 md:bg-teal-100  md:p-3  md:text-2xl md:border-2 md:border-teal-200 lg:m-4 lg:text-green-900 lg:mx-6 lg:my-3 lg:bg-green-100  lg:p-4 lg:text-3xl lg:border-2 lg:border-green-200"
             });
         } 
       });
@@ -178,7 +178,7 @@ var getCovidHospital = function (covidApiHosp) {
               // COVID-19 hospital cases are shown inside the id of: hospital-occupancy in the HTML
               document.querySelector("#hospital-occupancy").innerHTML= " Hospital Occupancies: "+ dataCovHosp.data[0].hospitalCases;
               var hospitalOccupancy = document.querySelector("#hospital-occupancy")
-              hospitalOccupancy.classList="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
+              hospitalOccupancy.classList="m-2 text-blue-900 shadow-lg text-center mx-4 my-1 bg-blue-100 rounded-xl p-2 font-semibold text-xl border-1 border-blue-200 md:m-3 md:text-teal-900 md:mx-5 md:my-2 md:bg-teal-100  md:p-3  md:text-2xl md:border-2 md:border-teal-200 lg:m-4 lg:text-green-900 lg:mx-6 lg:my-3 lg:bg-green-100  lg:p-4 lg:text-3xl lg:border-2 lg:border-green-200"
             });
         } 
       });
@@ -194,7 +194,7 @@ var getCovidR = function (covidApiR) {
               // COVID-19 transmission rate is shown inside the id of: r-rate in the HTML
               document.querySelector("#r-rate").innerHTML="R rate: "+ dataCovR.data[0].transmissionRateMax;
               var rRate = document.querySelector("#r-rate")
-              rRate.classList="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
+              rRate.classList="m-2 text-blue-900 shadow-lg text-center mx-4 my-1 bg-blue-100 rounded-xl p-2 font-semibold text-xl border-1 border-blue-200 md:m-3 md:text-teal-900 md:mx-5 md:my-2 md:bg-teal-100  md:p-3  md:text-2xl md:border-2 md:border-teal-200 lg:m-4 lg:text-green-900 lg:mx-6 lg:my-3 lg:bg-green-100  lg:p-4 lg:text-3xl lg:border-2 lg:border-green-200"
             });
         } 
       });
@@ -228,41 +228,41 @@ else{
 // computer forms a list of air quality statistics with the html
 document.querySelector("#Air-Quality").innerHTML="Air Quality Index: "+dataAQ.list[0].main.aqi
 var airQuality = document.querySelector("#Air-Quality")
-airQuality.classList = "shadow-lg text-center text-green-100 bg-green-700 p-6  font-semibold text-xl "
+airQuality.classList = "shadow-lg text-center text-blue-100 bg-blue-700 p-4  font-semibold text-xl md:text-teal-100 md:bg-teal-700 md:p-5 md:text-2xl lg:text-green-100 lg:bg-green-700 lg:p-6 lg:text-3xl "
 document.querySelector("#index").innerHTML="Good = 1 Fair = 2 Moderate = 3 Poor = 4 Very Poor = 5 "
 var airQualityI = document.querySelector('#index')
-airQualityI.classList= " text-green-900 bg-green-300 text-l shadow-lg text-center font-semibold"
+airQualityI.classList= "text-blue-900 bg-blue-300 text-xl shadow-lg text-center font-semibold md:text-teal-900 md:bg-teal-300  lg:text-green-900 lg:bg-green-300"
 document.querySelector("#Fine-Particles").innerHTML="Fine Particles : "+dataAQ.list[0].components.pm2_5+"μg/m<sup> 3</sup>"
 var fineParticles = document.querySelector("#Fine-Particles")
-fineParticles.classList="m-4 text-green-900 shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200";
+fineParticles.classList="m-2 text-blue-900 shadow-lg text-center mx-4 my-1 bg-blue-100 rounded-xl p-2 font-semibold text-xl border-1 border-blue-200 md:m-3 md:text-teal-900 md:mx-5 md:my-2 md:bg-teal-100  md:p-3  md:text-2xl md:border-2 md:border-teal-200 lg:m-4 lg:text-green-900 lg:mx-6 lg:my-3 lg:bg-green-100  lg:p-4 lg:text-3xl lg:border-2 lg:border-green-200";
 document.querySelector("#CO").innerHTML="Carbon Monoxide: "+dataAQ.list[0].components.co+"μg/m<sup> 3</sup>"
 var carbonMonoxide = document.querySelector("#CO")
-carbonMonoxide.classList="m-4 text-green-900 shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
+carbonMonoxide.classList="m-2 text-blue-900 shadow-lg text-center mx-4 my-1 bg-blue-100 rounded-xl p-2 font-semibold text-xl border-1 border-blue-200 md:m-3 md:text-teal-900 md:mx-5 md:my-2 md:bg-teal-100  md:p-3  md:text-2xl md:border-2 md:border-teal-200 lg:m-4 lg:text-green-900 lg:mx-6 lg:my-3 lg:bg-green-100  lg:p-4 lg:text-3xl lg:border-2 lg:border-green-200"
 document.querySelector("#ozone").innerHTML="Ozone: "+dataAQ.list[0].components.o3+"μg/m<sup> 3</sup>"
 var ozone = document.querySelector("#ozone")
-ozone.classList="m-4 shadow-lg text-green-900 text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
+ozone.classList="m-2 text-blue-900 shadow-lg text-center mx-4 my-1 bg-blue-100 rounded-xl p-2 font-semibold text-xl border-1 border-blue-200 md:m-3 md:text-teal-900 md:mx-5 md:my-2 md:bg-teal-100  md:p-3  md:text-2xl md:border-2 md:border-teal-200 lg:m-4 lg:text-green-900 lg:mx-6 lg:my-3 lg:bg-green-100  lg:p-4 lg:text-3xl lg:border-2 lg:border-green-200"
 document.querySelector("#NO").innerHTML="Nitrogen Monoxide: "+dataAQ.list[0].components.no+"μg/m<sup> 3</sup>"
 var nitrogenMonoxide = document.querySelector("#NO")
-nitrogenMonoxide.classList="m-4 text-green-900 shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
+nitrogenMonoxide.classList="m-2 text-blue-900 shadow-lg text-center mx-4 my-1 bg-blue-100 rounded-xl p-2 font-semibold text-xl border-1 border-blue-200 md:m-3 md:text-teal-900 md:mx-5 md:my-2 md:bg-teal-100  md:p-3  md:text-2xl md:border-2 md:border-teal-200 lg:m-4 lg:text-green-900 lg:mx-6 lg:my-3 lg:bg-green-100  lg:p-4 lg:text-3xl lg:border-2 lg:border-green-200"
 document.querySelector("#NO2").innerHTML="Nitrogen Dioxide: "+dataAQ.list[0].components.no2+"μg/m<sup> 3</sup>"
 var nitrogenDioxide = document.querySelector("#NO2")
-nitrogenDioxide.classList="m-4 text-green-900 shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
+nitrogenDioxide.classList="m-2 text-blue-900 shadow-lg text-center mx-4 my-1 bg-blue-100 rounded-xl p-2 font-semibold text-xl border-1 border-blue-200 md:m-3 md:text-teal-900 md:mx-5 md:my-2 md:bg-teal-100  md:p-3  md:text-2xl md:border-2 md:border-teal-200 lg:m-4 lg:text-green-900 lg:mx-6 lg:my-3 lg:bg-green-100  lg:p-4 lg:text-3xl lg:border-2 lg:border-green-200"
 document.querySelector("#SO2").innerHTML="Sulfur Dioxide: "+dataAQ.list[0].components.so2+"μg/m<sup> 3</sup>"
 var sulfurDioxide = document.querySelector("#SO2")
-sulfurDioxide.classList="m-4 text-green-900 shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
+sulfurDioxide.classList="m-2 text-blue-900 shadow-lg text-center mx-4 my-1 bg-blue-100 rounded-xl p-2 font-semibold text-xl border-1 border-blue-200 md:m-3 md:text-teal-900 md:mx-5 md:my-2 md:bg-teal-100  md:p-3  md:text-2xl md:border-2 md:border-teal-200 lg:m-4 lg:text-green-900 lg:mx-6 lg:my-3 lg:bg-green-100  lg:p-4 lg:text-3xl lg:border-2 lg:border-green-200"
 document.querySelector("#NH3").innerHTML="Ammonia: "+dataAQ.list[0].components.nh3+"μg/m<sup> 3</sup>"
 var ammonia = document.querySelector("#NH3")
-ammonia.classList="m-4 text-green-900 shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
+ammonia.classList="m-2 text-blue-900 shadow-lg text-center mx-4 my-1 bg-blue-100 rounded-xl p-2 font-semibold text-xl border-1 border-blue-200 md:m-3 md:text-teal-900 md:mx-5 md:my-2 md:bg-teal-100  md:p-3  md:text-2xl md:border-2 md:border-teal-200 lg:m-4 lg:text-green-900 lg:mx-6 lg:my-3 lg:bg-green-100  lg:p-4 lg:text-3xl lg:border-2 lg:border-green-200"
 }
 }
 
 function previousPlaces(myLocs) {
   document.querySelector("#previous-term").innerHTML="Previous Places"
   var previousTerm =document.querySelector("#previous-term");
-  previousTerm.classList = "text-center font-semibold text-xl  text-green-800"
+  previousTerm.classList = "text-center font-semibold text-xl  text-blue-800 md:text-2xl  md:text-teal-800 lg:text-3xl  lg:text-green-800"
   var previousEl = document.createElement('li');
   var previousLoc = document.createElement('button');
-  previousLoc.classList="text-xl mx-4 text-center rounded-xl text-green-600 p-6 font-semibold bg-green-300 shadow-lg hover:bg-green-400"
+  previousLoc.classList="text-xl mx-2 text-center rounded-xl text-blue-600 p-4 font-semibold bg-blue-300 shadow-lg hover:bg-blue-400 md:text-2xl md:mx-3 md:text-teal-600 md:p-5 md:bg-teal-300 md:hover:bg-teal-400 lg:text-3xl lg:mx-4 lg:text-green-600 lg:p-6 lg:bg-green-300 lg:hover:bg-green-400"
   // Computer adds text content of the ith location.
   previousLoc.textContent = myLocs[i].locBtn.place;
   // previous choice is the name of the buttons of past searched places' buttons.
