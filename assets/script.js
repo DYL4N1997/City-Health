@@ -138,6 +138,8 @@ var getCovidCases = function (covidApi) {
               dataCov=data
               // COVID-19 cases are shown inside the id of: covid-cases in the HTML
               document.querySelector("#covid-cases").innerHTML= " Daily Cases: "+ dataCov.data[0].dailyCases;
+              var covidCases = document.querySelector("#covid-cases")
+              covidCases.classList="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
             });
         } 
       });
@@ -152,6 +154,8 @@ var getCovidHospital = function (covidApiHosp) {
               dataCovHosp=data;
               // COVID-19 hospital cases are shown inside the id of: hospital-occupancy in the HTML
               document.querySelector("#hospital-occupancy").innerHTML= " Hospital Occupancies: "+ dataCovHosp.data[0].hospitalCases;
+              var hospitalOccupancy = document.querySelector("#hospital-occupancy")
+              hospitalOccupancy.classList="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
             });
         } 
       });
@@ -166,6 +170,8 @@ var getCovidR = function (covidApiR) {
               dataCovR=data;
               // COVID-19 transmission rate is shown inside the id of: r-rate in the HTML
               document.querySelector("#r-rate").innerHTML="R rate: "+ dataCovR.data[0].transmissionRateMax;
+              var rRate = document.querySelector("#r-rate")
+              rRate.classList="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
             });
         } 
       });
