@@ -38,7 +38,10 @@ var formSubmitHandler = function (event) {
     displayContainer.textContent='';}
     // If the user does submits a blank location the computer prompts them to submit a name of a location.
   else {
-    displayContainer.textContent='Please enter a place'
+    document.querySelector("#display_container").innerHTML= "Please enter a place!";
+    var pleaseEnterPlace = document.querySelector("#display_container")
+    pleaseEnterPlace.classList="rounded-lg m-4 lg  font-semibold p-3 text-2xl text-center text-green-900 "
+
   }
   };
 
@@ -61,7 +64,9 @@ var getCoordinates = function (placeName) {
 var displayPlaces = function (possibleOptions){
     if (possibleOptions.length===0){
       // If computer can not find any places to match the user's input within Great Britain then the message below is displayed on the webpage.
-      displayContainer.textContent = 'Please Choose a Place in Great Britain';
+      var placeGroup=document.querySelector('#place_group')
+      placeGroup.textContent = 'Please Choose a Place in Great Britain!';
+      placeGroup.classList = 'rounded-lg m-4 lg  font-semibold p-3 text-2xl text-center text-green-900 '
         return;
       }
       var placeGroup=document.querySelector("#place_group")
@@ -72,8 +77,9 @@ var displayPlaces = function (possibleOptions){
         var placeName = possibleOptions[i].name + '  ' + possibleOptions[i].country;
         var place = document.createElement('ul');
         // Computer creates the choices as buttons so that the user can select one.
-        place.classList = 'text-xl mx-4 text-center rounded-xl text-green-100 p-6 bg-green-700 shadow-lg hover:bg-green-600'
+        place.classList = 'font-semibold text-xl mx-4 text-center rounded-xl text-green-100 p-6 bg-green-700 shadow-lg hover:bg-green-600'
         var title = document.createElement('button');
+        title.classList = "font-semibold "
         title.textContent = placeName;
         title.name='choice';
         title.id='choice'+i;
@@ -251,9 +257,12 @@ ammonia.classList="m-4 text-green-900 shadow-lg text-center mx-6 my-3 bg-green-1
 }
 
 function previousPlaces(myLocs) {
-  document.querySelector('#previous-term').innerHTML="Previous Places"
+  document.querySelector("#previous-term").innerHTML="Previous Places"
+  var previousTerm =document.querySelector("#previous-term");
+  previousTerm.classList = "text-center font-semibold text-xl  text-green-800"
   var previousEl = document.createElement('li');
   var previousLoc = document.createElement('button');
+  previousLoc.classList="text-xl mx-4 text-center rounded-xl text-green-600 p-6 font-semibold bg-green-300 shadow-lg hover:bg-green-400"
   // Computer adds text content of the ith location.
   previousLoc.textContent = myLocs[i].locBtn.place;
   // previous choice is the name of the buttons of past searched places' buttons.
