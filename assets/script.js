@@ -187,23 +187,43 @@ function getCityAirQuality (locBtn) {
 };
 
 function displayAirQuality(dataAQ) {
+  // if computer finds no related air pollution statistics than it tells the user this
 if (dataAQ.list[0].components.length === 0) {
    airQualityEl.textContent = 'No pollution stats found.';
    return;
 }
 else{
+  // if the computer finds related air pollution statistics it then extracts from dataAQ the dataGas components
   var  dataGas=dataAQ.list[0].components
 
-//this is where the html goes
+// computer forms a list of air quality statistics with the html
 document.querySelector("#Air-Quality").innerHTML="Air Quality Index: "+dataAQ.list[0].main.aqi
-document.querySelector("#index").innerHTML="Good = 1 Fair = 2 Moderate = 3 Poor = 4 Very Poor ="
+var airQuality = document.querySelector("#Air-Quality")
+airQuality.classList = "shadow-lg text-center text-green-100 bg-green-700 p-6  font-semibold text-xl "
+document.querySelector("#index").innerHTML="Good = 1 Fair = 2 Moderate = 3 Poor = 4 Very Poor = 5 "
+var airQualityI = document.querySelector('#index')
+airQualityI.classList= " text-green-900 bg-green-300 text-l shadow-lg text-center font-semibold"
 document.querySelector("#Fine-Particles").innerHTML="Fine Particles : "+dataAQ.list[0].components.pm2_5+"μg/m<sup> 3</sup>"
-document.querySelector("#CO").innerHTML="carbon monoxide: "+dataAQ.list[0].components.co+"μg/m<sup> 3</sup>"
+var fineParticles = document.querySelector("#Fine-Particles")
+fineParticles.classList="m-4 text-green-900 shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200";
+document.querySelector("#CO").innerHTML="Carbon Monoxide: "+dataAQ.list[0].components.co+"μg/m<sup> 3</sup>"
+var carbonMonoxide = document.querySelector("#CO")
+carbonMonoxide.classList="m-4 text-green-900 shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
 document.querySelector("#ozone").innerHTML="Ozone: "+dataAQ.list[0].components.o3+"μg/m<sup> 3</sup>"
-document.querySelector("#NO").innerHTML="nitrogen monoxide: "+dataAQ.list[0].components.no+"μg/m<sup> 3</sup>"
-document.querySelector("#NO2").innerHTML="nitrogen dioxide: "+dataAQ.list[0].components.no2+"μg/m<sup> 3</sup>"
-document.querySelector("#SO2").innerHTML="sulfur dioxide: "+dataAQ.list[0].components.so2+"μg/m<sup> 3</sup>"
+var ozone = document.querySelector("#ozone")
+ozone.classList="m-4 shadow-lg text-green-900 text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
+document.querySelector("#NO").innerHTML="Nitrogen Monoxide: "+dataAQ.list[0].components.no+"μg/m<sup> 3</sup>"
+var nitrogenMonoxide = document.querySelector("#NO")
+nitrogenMonoxide.classList="m-4 text-green-900 shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
+document.querySelector("#NO2").innerHTML="Nitrogen Dioxide: "+dataAQ.list[0].components.no2+"μg/m<sup> 3</sup>"
+var nitrogenDioxide = document.querySelector("#NO2")
+nitrogenDioxide.classList="m-4 text-green-900 shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
+document.querySelector("#SO2").innerHTML="Sulfur Dioxide: "+dataAQ.list[0].components.so2+"μg/m<sup> 3</sup>"
+var sulfurDioxide = document.querySelector("#SO2")
+sulfurDioxide.classList="m-4 text-green-900 shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
 document.querySelector("#NH3").innerHTML="Ammonia: "+dataAQ.list[0].components.nh3+"μg/m<sup> 3</sup>"
+var ammonia = document.querySelector("#NH3")
+ammonia.classList="m-4 text-green-900 shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"
 }
 }
 
