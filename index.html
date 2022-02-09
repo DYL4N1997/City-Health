@@ -20,16 +20,18 @@
     <section class="col-span-1">
         <form id="user-form" class="m-4 rounded-xl border-4 border-green-800 text-green-900 p-6 bg-green-100 shadow-lg hover:bg-green-200">
             <header class="font-semibold p-6 text-xl text-center">Search for a Place:</header>
-            <div class="mx-20">
-                <input id="input"class="ml-6 p-1 rounded-xl border-4 border-green-800 text-center"
+            <div class="grid grid-cols-2 ">
+                <input id="input"class="col-span-1 mx-1 p-1 rounded-xl border-4 border-green-800 text-center"
                 placeholder="e.g. Birmingham">
-                <button class=" bg-green-700 text-white p-2 rounded-xl" type="submit" id="search-btn">Search</button>
+                <button class="col-span-1 mx-1 bg-green-700 text-white p-2 rounded-xl" type="submit" id="search-btn">Search</button>
               </div>
         </form>
         <h2 id="place_group"></h2>
-        <section id="display_container" class="grid grid-rows-4 gap-2 mt-4">
+        <section id="display_container" class="grid grid-rows-4 gap-2 mt-4"></section>
+        <section>
+            <span id="previous-term"></span>
+            <ul id="previous-container"></ul>
         </section>
-        <section></section>
     </section>
     <main class="col-span-2">
       <header class="text-2xl font-semibold text-center text-green-900 p-6" id="Area"></header>
@@ -38,21 +40,24 @@
             <section id="covid" class="bg-white grid-cols-3">
               <div id="covid-cases" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
               <div id="hospital-occupancy" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
-              <div></div>
+              <div id="r-rate" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
             </section>
         </section>
         <section class="m-4 rounded-lg border-4 border-green-800 text-green-900 items-stretch  bg-white rounded-xl shadow-lg hover:bg-gray-100">
             <header class="bg-green-200 text-center hover:bg-green-300">Air Pollution Levels</header>
             <section>
                 <!--adding elements that you want here-->
-                <div id="Air-Quality"></div>
-                <div id="Fine-Particles"></div>
-                <div id="CO"></div>
-                <div id="ozone"></div>
-                <div id="NO"></div>
-                <div id="NO2"></div>
-                <div id="SO2"></div>
-                <div id="NH3"></div>
+                <div>
+                  <header id="Air-Quality" class=""></header>
+                  <p id="index" class=""></p>
+                </div>
+                <div id="Fine-Particles" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+                <div id="CO" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+                <div id="ozone" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+                <div id="NO" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+                <div id="NO2" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+                <div id="SO2" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
+                <div id="NH3" class="shadow-lg text-center mx-6 my-3 bg-green-100 rounded-xl p-4 font-semibold text-xl border-2 border-green-200"></div>
             </section>
         </section>
     </main>

@@ -9,10 +9,12 @@ var locBtn = new Object()
 var pcApi="";
 var dataReg="";
 var covidApi= "";
+var dataCovR="";
 var dataCov="";
 
 //this moment is needed for covid API in this layout
-now = moment().format('YYYY-MM-DD');
+var now = moment().format('YYYY-MM-DD');
+now=moment().subtract(1, 'day').format('YYYY-MM-DD');
 var prevFri=moment().day(-2).format('YYYY-MM-DD');
 
 var formSubmitHandler = function (event) {
@@ -117,8 +119,7 @@ var getCovidCases = function (covidApi) {
           if (response.ok) {
             response.json().then(function (data) {
               // today's data from the Gov about COVID stats for the selected place
-              dataCov=data;
-              console.log("area "+ dataCov.data[0].name + " daily cases "+ dataCov.data[0].dailyCases)
+              dataCov=data
               document.querySelector("#covid-cases").innerHTML= " Daily Cases: "+ dataCov.data[0].dailyCases;
             });
         } 
@@ -186,6 +187,7 @@ else{
 
 //this is where the html goes
 document.querySelector("#Air-Quality").innerHTML="Air Quality Index: "+dataAQ.list[0].main.aqi
+document.querySelector("#index").innerHTML="Good = 1 Fair = 2 Moderate = 3 Poor = 4 Very Poor ="
 document.querySelector("#Fine-Particles").innerHTML="Fine Particles : "+dataAQ.list[0].components.pm2_5+"μg/m<sup> 3</sup>"
 document.querySelector("#CO").innerHTML="carbon monoxide: "+dataAQ.list[0].components.co+"μg/m<sup> 3</sup>"
 document.querySelector("#ozone").innerHTML="Ozone: "+dataAQ.list[0].components.o3+"μg/m<sup> 3</sup>"
