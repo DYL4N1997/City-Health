@@ -18,6 +18,11 @@ var dataCovR="";
 var dataCov="";
 // dataCovHosp is the number of people in the searched area's hospitals at the time.
 var dataCovHosp="";
+// Computer stores previous locations here.
+var myLocs = [];
+// indexPlaces is the index for places in local storage
+var indexPlaces = 0;
+var previousContainer= document.querySelector('#previous-container');
 
 //this moment is needed for covidAPI in this layout format for: dataCovHosp and dataCov
 var now=moment().subtract(1, 'day').format('YYYY-MM-DD');
@@ -85,7 +90,19 @@ var displayPlaces = function (possibleOptions){
       locBtn.place=possibleOptions[j].name; 
       locBtn.lat=possibleOptions[j].lat; 
       locBtn.lon=possibleOptions[j].lon;
-      document.querySelector("#Area").innerHTML = locBtn.place
+      // Computer is adding the place most recently searched by the user to the array of previous places.
+      myLocs.push({id:indexPlaces,locBtn}); 
+      // Computer adds updated myLocs to local storage
+          localStorage.setItem("myLocsLocal", JSON.stringify(myLocs))
+      // Computer increments the id ready for the next researched place.
+          indexPlaces++;
+          i=myLocs.length- 1;
+          previousPlaces(myLocs);
+       // Computer calls the open weather API
+          document.querySelector("#Area").innerHTML = locBtn.place;
+          console.log('hello')
+          getCityAirQuality(locBtn);
+      document.querySelector("#Area").innerHTML = locBtn.place;
        // Computer calls the open weather air quality API
       getCityAirQuality(locBtn);
       
@@ -233,4 +250,49 @@ ammonia.classList="m-4 text-green-900 shadow-lg text-center mx-6 my-3 bg-green-1
 }
 }
 
+function previousPlaces(myLocs) {
+  document.querySelector('#previous-term').innerHTML="Previous Places"
+  var previousEl = document.createElement('li');
+  var previousLoc = document.createElement('button');
+  // Computer adds text content of the ith location.
+  previousLoc.textContent = myLocs[i].locBtn.place;
+  // previous choice is the name of the buttons of past searched places' buttons.
+  previousLoc.name = 'prevchoice'
+  previousLoc.value = i;
+  previousContainer.appendChild(previousLoc);
+
+  $("button[name='prevchoice']").on('click',function() {
+      // Finding the values in the list that the user clicked.
+      var j = parseInt($(this).val());
+      // Computer sets pinLoc to be the previous location that the user has chosen.
+      locBtn = myLocs[j].locBtn;
+      // Computer calls weatherBalloon for the location the user has chosen.
+      getCityAirQuality(locBtn);
+    
+      // this API find the local authority (it associates the lat and lon with local gov region needed for covid nhs api)
+      
+      pcApi = 'https://findthatpostcode.uk/points/'+locBtn.lat+'%2C'+locBtn.lon+'.json'
+      
+      getRegion(pcApi)}
+      );
+      //make sure inside the bracket that opens at the possible options function
+};
+  
+function init() {
+  // Computer retries information from local storage.
+  var storedLocs = JSON.parse(localStorage.getItem("myLocsLocal"));
+  // If my localStorage is empty then computer retrieves no information.
+  if (storedLocs !== null) {
+    // If there is information in my localStorage then computer puts it in myLocs.
+    myLocs = storedLocs
+    var iMin=0;
+    if(myLocs.length>5){iMin=myLocs.length-5}
+    for (i=iMin;i<myLocs.length;i++){
+      // When the user refreshes the page the list of previous locations is made visable.
+    previousPlaces(myLocs)};
+  }
+}
+
 userForm.addEventListener('submit', formSubmitHandler);
+init();
+
