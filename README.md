@@ -22,7 +22,7 @@ The API's we use within this application are: OpenWeather Geocoding API, OpenWea
  
 ## Challenges that occurred in production
 * A challenge we experienced throughout the project was the use of remote branches as oftentimes conflicts would occur when we tried to merge them to the main branch.
-* A challenge we faced in this project was accessing the data about the COVID-19 R-rate (transmission rate) as it didn’t seem to display. We figured out that this was because the R-rate is measured every Friday. The solution we found was by setting the date for the moment to the previous Friday, so we had to set a moment to the date of the previous Friday. 
+* A challenge we faced in this project was accessing the data about the COVID-19 R-rate \(transmission rate\) as it didn’t seem to display. We figured out that this was because the R-rate is measured every Friday. The solution we found was by setting the date for the moment to the previous Friday, so we had to set a moment to the date of the previous Friday. 
 * Another issue we had, with the other COVID-19 statistics, was that they would not display in the morning. The way we resolved this was to set the related moment’s date to the previous day.  
 * Another challenge was figuring out how to access,through Find that Postcode API, more remote location's associated regional geographical code. This was solved by associating it with a larger region in the  Find that Postcode API. This iss important in regards to this application as that is how the computer retrieves COVID-19 data.
 * A further obstacle was not being able to find an easily accessible API for global COVID-19 current statistics, this meant we had to use a filter in the OpenWeather Geocoding API to so that it only accesses locations in Great Britain.
@@ -36,3 +36,7 @@ The API's we use within this application are: OpenWeather Geocoding API, OpenWea
 
 ## Deployed Application
 ![Deployed Application](./assets/deployed-application.png?raw=true)
+
+[Link to Deployed Application](https://dyl4n1997.github.io/City-Health/)
+
+
