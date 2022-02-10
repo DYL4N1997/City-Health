@@ -91,7 +91,7 @@ var displayPlaces = function (possibleOptions){
     // Computer finds all of the buttons when clicked on extracts the related id and puts the place and its latitude and longitude in locBtn.
     $("button[name='choice']").on('click',function() {
       var j=parseInt($(this).val());
-      console.log(j+ "j")
+     
       //storing properties of selected location so that you can now access name, lat and long 
       locBtn.place=possibleOptions[j].name; 
       locBtn.lat=possibleOptions[j].lat; 
@@ -262,7 +262,7 @@ function previousPlaces(myLocs) {
   previousTerm.classList = "text-center font-semibold text-xl  text-blue-800 md:text-2xl  md:text-teal-800 lg:text-3xl  lg:text-green-800"
   var previousEl = document.createElement('li');
   var previousLoc = document.createElement('button');
-  previousLoc.classList="text-xl mx-2 text-center rounded-xl text-blue-600 p-4 font-semibold bg-blue-300 shadow-lg hover:bg-blue-400 md:text-2xl md:mx-3 md:text-teal-600 md:p-5 md:bg-teal-300 md:hover:bg-teal-400 lg:text-3xl lg:mx-4 lg:text-green-600 lg:p-6 lg:bg-green-300 lg:hover:bg-green-400"
+  previousLoc.classList="text-xl mx-2 text-center rounded-xl text-yellow-500 p-4 font-semibold bg-blue-300 shadow-lg hover:bg-blue-400 md:text-2xl md:mx-3 md:text-teal-600 md:p-5 md:bg-teal-300 md:hover:bg-teal-400 lg:text-3xl lg:mx-4 lg:text-black lg:p-6 lg:bg-blue-300 lg:hover:bg-green-400"
   // Computer adds text content of the ith location.
   previousLoc.textContent = myLocs[i].locBtn.place;
   // previous choice is the name of the buttons of past searched places' buttons.
