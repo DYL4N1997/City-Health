@@ -102,7 +102,7 @@ var displayPlaces = function (possibleOptions){
           localStorage.setItem("myLocsLocal", JSON.stringify(myLocs))
       // Computer increments the id ready for the next researched place.
           indexPlaces++;
-          i=myLocs.length- 1;
+          var i = myLocs.length- 1;
           previousPlaces(myLocs);
        // Computer calls the open weather API
           document.querySelector("#Area").innerHTML = locBtn.place;
