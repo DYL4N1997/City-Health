@@ -22,6 +22,7 @@ var dataCovHosp="";
 var myLocs = [];
 // indexPlaces is the index for places in local storage
 var indexPlaces = 0;
+var index=0;
 var previousContainer= document.querySelector('#previous-container');
 
 //this moment is needed for covidAPI in this layout format for: dataCovHosp and dataCov
@@ -102,7 +103,7 @@ var displayPlaces = function (possibleOptions){
           localStorage.setItem("myLocsLocal", JSON.stringify(myLocs))
       // Computer increments the id ready for the next researched place.
           indexPlaces++;
-          var i = myLocs.length- 1;
+          var index = myLocs.length- 1;
           previousPlaces(myLocs);
        // Computer calls the open weather API
           document.querySelector("#Area").innerHTML = locBtn.place;
@@ -264,10 +265,10 @@ function previousPlaces(myLocs) {
   var previousLoc = document.createElement('button');
   previousLoc.classList="text-xl mx-2 text-center rounded-xl text-blue-500 p-4 font-semibold bg-blue-300 shadow-lg hover:bg-blue-400 md:text-2xl md:mx-3 md:text-teal-600 md:p-5 md:bg-teal-300 md:hover:bg-teal-400 lg:text-3xl lg:mx-4 lg:text-green-800 lg:p-6 lg:bg-green-300 lg:hover:bg-green-400"
   // Computer adds text content of the ith location.
-  previousLoc.textContent = myLocs[i].locBtn.place;
+  previousLoc.textContent = myLocs[index].locBtn.place;
   // previous choice is the name of the buttons of past searched places' buttons.
   previousLoc.name = 'prevchoice'
-  previousLoc.value = i;
+  previousLoc.value = index;
   previousContainer.appendChild(previousLoc);
 
   $("button[name='prevchoice']").on('click',function() {
@@ -296,7 +297,7 @@ function init() {
     myLocs = storedLocs
     var iMin=0;
     if(myLocs.length>5){iMin=myLocs.length-5}
-    for (i=iMin;i<myLocs.length;i++){
+    for (index=iMin;index<myLocs.length;index++){
       // When the user refreshes the page the list of previous locations is made visable.
     previousPlaces(myLocs)};
   }
