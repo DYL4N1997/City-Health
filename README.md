@@ -12,7 +12,6 @@ Tailwind is the CSS framework in this application because it is very customizabl
 Moment.js’ library allows our application to access the GOV.Uk Coronavirus Api's data for specific dates. We use different moment formats to be able to access varying COVID-19 information.
  
 ### APIs
- 
 The API's we use within this application are: OpenWeather Geocoding API, OpenWeather Air Pollution API, Find That Postcode API and the GOV.Uk Coronavirus in the UK Open Data API.
  
 * OpenWeather Geocoding API allows the computer to access geographical coordinates when the user searches for a place.
@@ -33,9 +32,16 @@ The API's we use within this application are: OpenWeather Geocoding API, OpenWea
 * To create a forecast for the air pollution levels within a place.
 * To make the website more visually stimulation by adding interactive graphs for both air pollution and COVID-19 statistics. 
 * To add an interactive map using Google Maps API to display area’s levels of COVID-19 and air pollution.
+* Lastly since our website’s main message is about informing people about factors that could affect their health, we would add relevant links to educate people on how to stay safe in this environment: such as the uk government site about staying safe and prevent spreading of covid and for air quality a link from british lung foundation about how to protect yourself against air pollution.
 
 ## Deployed Application
-![Deployed Application](./assets/deployed-application.png?raw=true)
+
+### On minimum screen width of 1024px
+![Deployed Application On minimum screen width of](./assets/deployed-application-computer.png?raw=true)
+## On minimum screen width of 768px
+![Deployed Application On minimum screen width of](./assets/deployed-application-tablet.png?raw=true)
+## On minimum screen width of 640px
+![Deployed Application On minimum screen width of](./assets/deployed-application-phone.png?raw=true)
 
 [Link to Deployed Application](https://dyl4n1997.github.io/City-Health/)
 
