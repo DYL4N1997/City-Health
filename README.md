@@ -38,9 +38,9 @@ The API's we use within this application are: OpenWeather Geocoding API, OpenWea
 
 ### On minimum screen width of 1024px
 ![Deployed Application On minimum screen width of](./assets/deployed-application-computer.png?raw=true)
-## On minimum screen width of 768px
+### On minimum screen width of 768px
 ![Deployed Application On minimum screen width of](./assets/deployed-application-tablet.png?raw=true)
-## On minimum screen width of 640px
+### On minimum screen width of 640px
 ![Deployed Application On minimum screen width of](./assets/deployed-application-phone.png?raw=true)
 
 [Link to Deployed Application](https://dyl4n1997.github.io/City-Health/)
