@@ -45,4 +45,6 @@ The API's we use within this application are: OpenWeather Geocoding API, OpenWea
 
 [Link to Deployed Application](https://dyl4n1997.github.io/City-Health/)
 
+## Contact Information
 
+My Email:[lcrgunn@gmail.com](mailto:lcrgunn@gmail.com)
